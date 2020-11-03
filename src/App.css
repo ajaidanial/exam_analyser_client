@@ -1,0 +1,121 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  width: 100%;
+  background-color: #f4f7fe;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+/* ------------------------------------------------- GENERAL COMPONENTS ---------------------------------------------------- */
+
+/*  components */
+.txt-dblue {
+  color: #3e5eab !important;
+}
+.txt-blue {
+  color: #5580e9 !important;
+}
+.txt-grey {
+  color: #c1c8e4 !important;
+}
+
+.bg-grey {
+  background-color: #c1c8e4 !important;
+}
+
+.bg-dblue {
+  background-color: #3e5eab !important;
+}
+
+.bg-blue {
+  background-color: #5580e9 !important;
+}
+
+/* navbar */
+.navbar a {
+  color: white !important;
+}
+
+/* input component */
+.input-container input {
+  border-bottom: 1px solid #c1c8e4 !important;
+  outline: 0;
+  border-width: 0 0 4px;
+}
+
+input::placeholder {
+  color: #c1c8e4 !important;
+}
+
+.input-container .form-label {
+  color: #3e5eab !important;
+}
+
+/* -------------------------------------------------- LOGIN PAGE ----------------------------------------------------------- */
+/* login container */
+.login-container,
+.login-container .row,
+.login-container .login-left-container,
+.login-container .login-right-container {
+  width: 100%;
+  height: 100%;
+}
+
+/* login left container  */
+.login-container .login-left-container {
+  background-color: #3e5eab;
+}
+
+.login-container .login-left-container .left-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 300px;
+}
+
+.login-container .login-left-container h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+}
+
+/* login right container */
+.login-container .login-right-container {
+  background-color: white;
+}
+
+.login-container .login-right-container .main-container {
+  padding: 50px;
+}
+
+@media only screen and (min-width: 992px) {
+  .login-container .login-right-container .main-container .field-container {
+    margin-top: 100px;
+  }
+}
+
+/* -------------------------------------------------- HOME PAGE AND UPDATE PAGE ----------------------------------------------------------- */
+
+.home-container {
+  width: 100%;
+  height: 100%;
+  background-color: #f4f7fe;
+}
+
+.home-card {
+  border: none !important;
+}
+
+/* -------------------------------------------------- QUESTION PAGE ----------------------------------------------------------- */
