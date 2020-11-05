@@ -56,7 +56,7 @@ export default class ExaminationOverview extends Component {
   }
 
   render() {
-    let { subjectsData } = this.state
+    let { subjectsData, examsData } = this.state
     return (
       <div className="page-container">
         <div className="container mt-5">
@@ -70,12 +70,11 @@ export default class ExaminationOverview extends Component {
               </tr>
             </thead>
             <tbody>
-              {/* {this.state.exams.map((exam) => (
+              {Object.keys(examsData).map((key, index) => (
                 <tr>
-                  <td>{exam.id}</td>
-                  <td>{exam.name}</td>
+                  <td>{examsData[key]}</td>
                 </tr>
-              ))} */}
+              ))}
             </tbody>
           </Table>
         </div>
