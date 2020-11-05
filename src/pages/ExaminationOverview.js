@@ -56,7 +56,7 @@ export default class ExaminationOverview extends Component {
   }
 
   render() {
-    let { subjectsData, examsData } = this.state
+    let { subjectsData, examsData, examSubjectQuestionPaperData } = this.state
     return (
       <div className="page-container">
         <div className="container mt-5">
@@ -70,11 +70,41 @@ export default class ExaminationOverview extends Component {
               </tr>
             </thead>
             <tbody>
-              {Object.keys(examsData).map((key, index) => (
-                <tr>
-                  <td>{examsData[key]}</td>
-                </tr>
-              ))}
+              {Object.keys(examsData).map((examKey, index) => {
+                let examSubjectsData = examSubjectQuestionPaperData[examKey]
+                return (
+                  <tr>
+                    <td>{examsData[examKey]}</td>
+                    {Object.keys(examSubjectsData).map((subjectKey, index) => {
+                      let examSubjectQuestionPaper =
+                        examSubjectsData[subjectKey]
+                      return examSubjectQuestionPaper ? (
+                        <td
+                          className="text-danger"
+                          onClick={(e) => {
+                            alert(
+                              'question paper id: ' +
+                                examSubjectQuestionPaper.id
+                            )
+                          }}
+                        >
+                          {examSubjectQuestionPaper.name}
+                        </td>
+                      ) : (
+                        <td
+                          onClick={(e) => {
+                            alert(
+                              `exam id: ${examKey} subject id: ${subjectKey}`
+                            )
+                          }}
+                        >
+                          Add
+                        </td>
+                      )
+                    })}
+                  </tr>
+                )
+              })}
             </tbody>
           </Table>
         </div>
