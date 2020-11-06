@@ -13,7 +13,7 @@ export default class Navibar extends Component {
             <Nav.Link href="/exams">Exams</Nav.Link>
             <Nav.Link href="/members">Users</Nav.Link>
             <Nav.Link href="/categories">Categories</Nav.Link>
-            <Nav.Link href="/questionpaper">Q Paper</Nav.Link>
+            <Nav.Link href="/questionpapers">Q Paper</Nav.Link>
             <Nav.Link href="/examination/overview">Examination</Nav.Link>
             <Nav.Link
               onClick={(e) => {
