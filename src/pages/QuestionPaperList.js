@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Questioncard } from '../components/index'
 import { triggerSimpleAjax } from '../helpers/httpHelper'
 
-export default class QuestionPaper extends Component {
+export default class QuestionPaperList extends Component {
   state = {
     qpapers: []
   }

@@ -20,7 +20,7 @@ import {
   ExaminationOverview,
   CategoriesList,
   CategoriesCreate,
-  QuestionPaper
+  QuestionPaperList
 } from './pages/index'
 import { Navibar } from './components'
 
@@ -73,7 +73,7 @@ export default class App extends Component {
           <AuthenticatedRoute
             exact
             path="/questionpaper"
-            component={QuestionPaper}
+            component={QuestionPaperList}
           />
           <Route component={Page404} />
         </Switch>
