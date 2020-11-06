@@ -1,5 +1,5 @@
-import React from "react";
-import { Card } from "react-bootstrap";
+import React from 'react'
+import { Card } from 'react-bootstrap'
 
 export default function HomeCard() {
   return (
@@ -15,5 +15,5 @@ export default function HomeCard() {
         <Card.Link href="#">Another Link</Card.Link>
       </Card.Body>
     </Card>
-  );
+  )
 }

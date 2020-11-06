@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Input, AppSelect } from '../components/index'
-import { Card, Button, Form } from 'react-bootstrap'
-import axios from 'axios'
+import { Card, Button } from 'react-bootstrap'
 import { triggerSimpleAjax } from '../helpers/httpHelper'
 
 export default class SubjectsCreate extends Component {
