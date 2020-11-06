@@ -20,9 +20,9 @@ export default class QuestionPaperList extends Component {
     return (
       <div className="page-container">
         <div className="container">
-          <Button className="bg-dblue mb-4" href="/questionpapers/create">
+          {/* <Button className="bg-dblue mb-4" href="/questionpapers/create">
             Add New
-          </Button>
+          </Button> */}
           {this.state.qpapers.map((qpaper) => (
             <Questioncard {...qpaper} />
           ))}
