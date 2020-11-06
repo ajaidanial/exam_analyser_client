@@ -3,7 +3,6 @@ import { Button } from 'react-bootstrap'
 import { RiBookOpenFill, RiLoginBoxLine } from 'react-icons/ri'
 import { Input } from '../components/index'
 import { Navbar } from 'react-bootstrap'
-import axios from 'axios'
 import { triggerSimpleAjax } from '../helpers/httpHelper'
 
 export default class Login extends Component {

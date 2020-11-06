@@ -96,6 +96,7 @@ export default class ExaminationOverview extends Component {
                             alert(
                               `exam id: ${examKey} subject id: ${subjectKey}`
                             )
+                            window.location.href = '/questionpaper'
                           }}
                         >
                           Add

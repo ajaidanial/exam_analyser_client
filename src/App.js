@@ -18,8 +18,9 @@ import {
   MembersList,
   MembersCreate,
   ExaminationOverview,
-  Categories,
-  CategoriesCreate
+  CategoriesList,
+  CategoriesCreate,
+  QuestionPaper
 } from './pages/index'
 import { Navibar } from './components'
 
@@ -59,11 +60,20 @@ export default class App extends Component {
             path="/examination/overview"
             component={ExaminationOverview}
           />
-          <AuthenticatedRoute exact path="/categories" component={Categories} />
+          <AuthenticatedRoute
+            exact
+            path="/categories"
+            component={CategoriesList}
+          />
           <AuthenticatedRoute
             exact
             path="/categories/create"
             component={CategoriesCreate}
+          />
+          <AuthenticatedRoute
+            exact
+            path="/questionpaper"
+            component={QuestionPaper}
           />
           <Route component={Page404} />
         </Switch>

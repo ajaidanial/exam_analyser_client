@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Table, Button } from 'react-bootstrap'
 import { RiAddCircleFill } from 'react-icons/ri'
-import axios from 'axios'
 import { triggerSimpleAjax } from '../helpers/httpHelper'
 
 export default class ExamsList extends Component {

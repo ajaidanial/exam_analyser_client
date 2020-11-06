@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
 import { Table, Button } from 'react-bootstrap'
 import { AiFillFileAdd } from 'react-icons/ai'
-import axios from 'axios'
 import { triggerSimpleAjax } from '../helpers/httpHelper'
 
-export default class Categories extends Component {
+export default class CategoriesList extends Component {
   state = {
     categories: []
   }
