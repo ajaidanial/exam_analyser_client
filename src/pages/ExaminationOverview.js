@@ -96,7 +96,10 @@ export default class ExaminationOverview extends Component {
                             alert(
                               `exam id: ${examKey} subject id: ${subjectKey}`
                             )
-                            window.location.href = '/questionpaper'
+                            localStorage.setItem('exam_id', examKey)
+                            localStorage.setItem('subject_id', subjectKey)
+
+                            window.location.href = '/questionpapers/create'
                           }}
                         >
                           Add

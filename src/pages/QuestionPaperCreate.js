@@ -6,31 +6,10 @@ import { triggerSimpleAjax } from '../helpers/httpHelper'
 export default class SubjectsCreate extends Component {
   state = {
     errors: {},
-    inputData: {},
-    options: {
-      categories: []
+    inputData: {
+      exam: localStorage.getItem('exam_id'),
+      subject: localStorage.getItem('subject_id')
     }
-  }
-
-  componentDidMount() {
-    triggerSimpleAjax('examination/question-categories/', 'get').then(
-      (response) => {
-        let categoriesOptions = []
-        response.map((data, index) => {
-          categoriesOptions.push({
-            value: data.id,
-            label: data.name
-          })
-        })
-        this.setState({
-          ...this.state,
-          options: {
-            ...this.state.options,
-            categories: categoriesOptions
-          }
-        })
-      }
-    )
   }
 
   handleChange = (e, customName = null) => {
@@ -69,10 +48,14 @@ export default class SubjectsCreate extends Component {
   }
 
   submitHandler = () => {
-    triggerSimpleAjax('auth/users/', 'post', this.state.inputData)
+    triggerSimpleAjax(
+      'examination/question-papers/?show-questions=true',
+      'post',
+      this.state.inputData
+    )
       .then((response) => {
         alert('Successfully created member.')
-        window.location.href = '/members'
+        // window.location.href = '/members'
       })
       .catch((errorResponse) => {
         this.setState({
@@ -95,7 +78,7 @@ export default class SubjectsCreate extends Component {
               <Input
                 type="text"
                 name="name"
-                placeholder="question name"
+                placeholder="question paper name"
                 value={inputData.name}
                 change={(e) => this.handleChange(e)}
                 errors={errors.name || errors.non_field_errors || errors.detail}
@@ -107,14 +90,6 @@ export default class SubjectsCreate extends Component {
                 value={inputData.description}
                 change={(e) => this.handleChange(e)}
                 errors={errors.description}
-              />
-              <AppSelect
-                name="linked_categories"
-                value={inputData.question_categories}
-                change={(e) => this.handleChange(e, 'question_categories')}
-                errors={errors.question_categories}
-                options={options.categories}
-                multiple={true}
               />
             </Card.Body>
             <Button

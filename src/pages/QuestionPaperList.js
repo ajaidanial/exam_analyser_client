@@ -1,6 +1,7 @@
-import React, { Component, Button } from 'react'
+import React, { Component } from 'react'
 import { Questioncard } from '../components/index'
 import { triggerSimpleAjax } from '../helpers/httpHelper'
+import { Button } from 'react-bootstrap'
 
 export default class QuestionPaperList extends Component {
   state = {
@@ -19,10 +20,10 @@ export default class QuestionPaperList extends Component {
   render() {
     return (
       <div className="page-container">
-        <div className="container">
-          {/* <Button className="bg-dblue mb-4" href="/questionpapers/create">
+        <div className="container mt-3">
+          <Button className="bg-dblue" href="/questionpapers/create">
             Add New
-          </Button> */}
+          </Button>
           {this.state.qpapers.map((qpaper) => (
             <Questioncard {...qpaper} />
           ))}
