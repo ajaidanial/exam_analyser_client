@@ -32,7 +32,10 @@ export default class QuestionPaperDetails extends Component {
           <Button className="bg-dblue mb-4" href="/questions/create">
             <AiFillFileAdd /> Add New
           </Button>
-          <Questioncard {...this.state.questions} />
+          <Questioncard
+            {...this.state.questions}
+            related_questions={[this.state.questions.related_questions]}
+          />
         </div>
       </div>
     )
