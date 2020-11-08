@@ -6,18 +6,22 @@ import { triggerSimpleAjax } from '../helpers/httpHelper'
 
 export default class QuestionPaperDetails extends Component {
   state = {
-    questions: [],
+    questions: {}
   }
 
   componentDidMount() {
     triggerSimpleAjax(
-      'examination/question-papers/`${localStorage.getItem('questionpaper_id')}`/?show-questions=true',
+      `examination/question-papers/${localStorage.getItem(
+        'questionpaper_id'
+      )}/?show-questions=true`,
       'get'
     ).then((response) => {
       this.setState({
         ...this.state,
         questions: response
       })
+      alert('sucess')
+      console.log(this.state.questions.name)
     })
   }
 
@@ -28,14 +32,7 @@ export default class QuestionPaperDetails extends Component {
           <Button className="bg-dblue mb-4" href="/questions/create">
             <AiFillFileAdd /> Add New
           </Button>
-          {this.state.questions.map((question) => (
-            <tr>
-              <td>{question.description}</td>
-              <td>{question.name}</td>
-              <td>{question.exam}</td>
-              <td>{question.subject}</td>
-            </tr>
-          ))}
+          <Questioncard {...this.state.questions} />
         </div>
       </div>
     )
