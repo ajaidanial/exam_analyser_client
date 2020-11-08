@@ -54,8 +54,9 @@ export default class SubjectsCreate extends Component {
       this.state.inputData
     )
       .then((response) => {
-        alert('Successfully created member.')
-        // window.location.href = '/members'
+        alert('Successfully created a question paper.')
+        localStorage.setItem('questionpaper_id', response.id)
+        window.location.href = '/questions/create'
       })
       .catch((errorResponse) => {
         this.setState({
@@ -73,7 +74,7 @@ export default class SubjectsCreate extends Component {
         <div className="home-container container mt-5 ">
           <Card className="shadow-lg p-3 mb-5 bg-white rounded">
             <Card.Body>
-              <h4>Enter Details To Create A Member</h4>
+              <h4>Enter Details To Create A Question Paper</h4>
 
               <Input
                 type="text"
