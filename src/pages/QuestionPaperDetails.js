@@ -21,7 +21,7 @@ export default class QuestionPaperDetails extends Component {
         questions: response
       })
       alert('sucess')
-      console.log(this.state.questions.name)
+      console.log(this.state.questions)
     })
   }
 

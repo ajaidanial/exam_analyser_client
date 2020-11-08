@@ -2,7 +2,7 @@ import React from 'react'
 import { Card, Button } from 'react-bootstrap'
 
 export default function Questioncard(props) {
-  let { name, description, exam, subject } = this.props
+  let { name, description, exam, subject } = props
   return (
     <Card className="shadow-lg p-3 mb-5 bg-white rounded mt-5">
       <Card.Header>{name}</Card.Header>
