@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Card } from 'react-bootstrap'
+import { Button, Card, Table } from 'react-bootstrap'
 import { AiFillFileAdd } from 'react-icons/ai'
 import { triggerSimpleAjax } from '../helpers/httpHelper'
 
@@ -57,7 +57,12 @@ export default class QuestionPaperDetails extends Component {
   }
 
   render() {
-    let { questionPaperData, questionsData, isLoading } = this.state
+    let {
+      questionPaperData,
+      questionsData,
+      isLoading,
+      usersReport
+    } = this.state
     return (
       <div className="page-container">
         <div className="container mt-5">
@@ -84,7 +89,11 @@ export default class QuestionPaperDetails extends Component {
               <Card.Text>{questionPaperData.description}</Card.Text>
             </Card.Header>
             <Card.Body>
-              {isLoading || <h6 className="text-warning">Questions:</h6>}
+              {isLoading ? (
+                <p>Loading...</p>
+              ) : (
+                <h6 className="text-warning">Questions:</h6>
+              )}
               {questionsData.map((data, index) => (
                 <div className="border p-2 my-2">
                   <Card.Text>
@@ -98,6 +107,35 @@ export default class QuestionPaperDetails extends Component {
               ))}
             </Card.Body>
           </Card>
+
+          {isLoading || (
+            <Table
+              className="bg-white shadow"
+              striped
+              bordered
+              hover
+              responsive
+            >
+              <thead>
+                <tr>
+                  <th>User Name</th>
+                  {questionsData.map((data, index) => (
+                    <th>Q.NO {index + 1}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {usersReport.map((data, index) => (
+                  <tr>
+                    <td>{data.name}</td>
+                    {questionsData.map((questionData, index) => (
+                      <td>{data[index]}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          )}
         </div>
       </div>
     )
