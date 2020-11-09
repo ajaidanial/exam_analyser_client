@@ -54,7 +54,9 @@ export default class SubjectsCreate extends Component {
       this.state.inputData
     )
       .then((response) => {
-        alert('Successfully created a question paper.')
+        alert(
+          'Successfully created a question paper. Now create questions under the question paper.'
+        )
         localStorage.setItem('questionpaper_id', response.id)
         window.location.href = '/questions/create'
       })

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Input, AppSelect } from '../components/index'
 import { triggerSimpleAjax } from '../helpers/httpHelper'
-import { Button } from 'react-bootstrap'
+import { Button, Card } from 'react-bootstrap'
 
 export default class QuestionCreate extends Component {
   state = {
@@ -83,53 +83,60 @@ export default class QuestionCreate extends Component {
         })
       })
   }
+
   render() {
     let { inputData, errors, options } = this.state
     return (
       <div className="page-container">
-        <div className="container mt-3">
-          <Button className="bg-dblue" href="/questionpapers/details">
+        <div className="home-container container mt-5 ">
+          <Button className="bg-dblue mb-3" href="/questionpapers/details">
             Finish and view question paper
           </Button>
-          <Input
-            type="text"
-            name="name"
-            placeholder="name"
-            value={inputData.name}
-            change={(e) => this.handleChange(e)}
-            errors={errors.name}
-          />
-          <Input
-            type="text"
-            name="description"
-            placeholder="description"
-            value={inputData.description}
-            change={(e) => this.handleChange(e)}
-            errors={errors.description}
-          />
-          <Input
-            type="number"
-            name="max_marks"
-            placeholder="max_marks"
-            value={inputData.max_marks}
-            change={(e) => this.handleChange(e)}
-            errors={errors.max_marks}
-          />
-
-          <AppSelect
-            name="question_categories"
-            value={inputData.question_categories}
-            change={(e) => this.handleChange(e, 'question_categories')}
-            errors={errors.question_categories}
-            options={options.categories}
-            multiple={true}
-          />
-          <Button
-            className="bg-blue btn-block mt-5"
-            onClick={this.submitHandler}
-          >
-            Submit
-          </Button>
+          <Card className="shadow-lg p-3 mb-5 bg-white rounded">
+            <Card.Body>
+              <h4>
+                Enter Details To Create Questions Under The Question Paper
+              </h4>
+              <Input
+                type="text"
+                name="name"
+                placeholder="name"
+                value={inputData.name}
+                change={(e) => this.handleChange(e)}
+                errors={errors.name}
+              />
+              <Input
+                type="text"
+                name="description"
+                placeholder="description"
+                value={inputData.description}
+                change={(e) => this.handleChange(e)}
+                errors={errors.description}
+              />
+              <Input
+                type="number"
+                name="max_marks"
+                placeholder="max_marks"
+                value={inputData.max_marks}
+                change={(e) => this.handleChange(e)}
+                errors={errors.max_marks}
+              />
+              <AppSelect
+                name="question_categories"
+                value={inputData.question_categories}
+                change={(e) => this.handleChange(e, 'question_categories')}
+                errors={errors.question_categories}
+                options={options.categories}
+                multiple={true}
+              />
+            </Card.Body>
+            <Button
+              className="bg-blue btn-block mt-5"
+              onClick={this.submitHandler}
+            >
+              Submit
+            </Button>
+          </Card>
         </div>
       </div>
     )

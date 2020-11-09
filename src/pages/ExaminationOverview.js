@@ -80,10 +80,15 @@ export default class ExaminationOverview extends Component {
                         <td
                           className="text-danger"
                           onClick={(e) => {
-                            alert(
-                              'question paper id: ' +
-                                examSubjectQuestionPaper.id
+                            // alert(
+                            //   'question paper id: ' +
+                            //     examSubjectQuestionPaper.id
+                            // )
+                            localStorage.setItem(
+                              'questionpaper_id',
+                              examSubjectQuestionPaper.id
                             )
+                            window.location.href = '/questionpapers/details'
                           }}
                         >
                           {examSubjectQuestionPaper.name}
@@ -91,9 +96,9 @@ export default class ExaminationOverview extends Component {
                       ) : (
                         <td
                           onClick={(e) => {
-                            alert(
-                              `exam id: ${examKey} subject id: ${subjectKey}`
-                            )
+                            // alert(
+                            //   `exam id: ${examKey} subject id: ${subjectKey}`
+                            // )
                             localStorage.setItem('exam_id', examKey)
                             localStorage.setItem('subject_id', subjectKey)
 
