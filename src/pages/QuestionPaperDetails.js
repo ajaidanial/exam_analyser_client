@@ -11,6 +11,10 @@ export default class QuestionPaperDetails extends Component {
   }
 
   componentDidMount() {
+    if (localStorage.getItem('questionpaper_id', null) === null) {
+      window.location.href = '/'
+    }
+
     triggerSimpleAjax(
       `examination/question-papers/${localStorage.getItem(
         'questionpaper_id'

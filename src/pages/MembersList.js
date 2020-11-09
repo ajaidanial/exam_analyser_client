@@ -9,6 +9,10 @@ export default class MembersList extends Component {
   }
 
   componentDidMount() {
+    if (localStorage.getItem('role', null) === null) {
+      window.location.href = '/'
+    }
+
     let currentRole = null
     if (localStorage.getItem('role', null)) {
       currentRole = JSON.parse(localStorage.getItem('role', null))

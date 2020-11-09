@@ -12,6 +12,15 @@ export default class SubjectsCreate extends Component {
     }
   }
 
+  componentDidMount() {
+    if (
+      localStorage.getItem('exam_id', null) === null ||
+      localStorage.getItem('subject_id', null) === null
+    ) {
+      window.location.href = '/'
+    }
+  }
+
   handleChange = (e, customName = null) => {
     let value = null
     if (e !== null && 'target' in e) {

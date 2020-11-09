@@ -15,6 +15,10 @@ export default class QuestionCreate extends Component {
   }
 
   componentDidMount() {
+    if (localStorage.getItem('questionpaper_id', null) === null) {
+      window.location.href = '/'
+    }
+
     triggerSimpleAjax('examination/question-categories/', 'get').then(
       (response) => {
         let categorieOptions = []
