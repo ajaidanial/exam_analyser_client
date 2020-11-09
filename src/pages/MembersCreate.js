@@ -16,14 +16,28 @@ export default class SubjectsCreate extends Component {
     let currentRole = localStorage.getItem('role', null)
     if (currentRole) {
       currentRole = JSON.parse(currentRole)
-      this.setState({
-        ...this.state,
-        currentRole: currentRole,
-        inputData: {
-          ...this.state.inputData,
-          role: currentRole === 'admin' ? 'teacher' : 'student'
+      this.setState(
+        {
+          ...this.state,
+          currentRole: currentRole,
+          inputData: {
+            ...this.state.inputData,
+            role: currentRole === 'admin' ? 'teacher' : 'student'
+          }
+        },
+        () => {
+          if (currentRole === 'teacher') {
+            this.setState({
+              ...this.state,
+              inputData: {
+                ...this.state.inputData,
+                password: 'test',
+                confirm_password: 'test'
+              }
+            })
+          }
         }
-      })
+      )
     }
 
     triggerSimpleAjax('examination/subjects/', 'get').then((response) => {
@@ -148,22 +162,26 @@ export default class SubjectsCreate extends Component {
                 options={options.subjects}
                 multiple={true}
               />
-              <Input
-                type="password"
-                name="password"
-                placeholder="Password"
-                value={inputData.password}
-                change={(e) => this.handleChange(e)}
-                errors={errors.password}
-              />
-              <Input
-                type="password"
-                name="confirm_password"
-                placeholder="Confirm Password"
-                value={inputData.confirm_password}
-                change={(e) => this.handleChange(e)}
-                errors={errors.confirm_password}
-              />
+              {['admin'].includes(currentRole) && (
+                <>
+                  <Input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    value={inputData.password}
+                    change={(e) => this.handleChange(e)}
+                    errors={errors.password}
+                  />
+                  <Input
+                    type="password"
+                    name="confirm_password"
+                    placeholder="Confirm Password"
+                    value={inputData.confirm_password}
+                    change={(e) => this.handleChange(e)}
+                    errors={errors.confirm_password}
+                  />
+                </>
+              )}
             </Card.Body>
             <Button
               className="bg-blue btn-block mt-5"
