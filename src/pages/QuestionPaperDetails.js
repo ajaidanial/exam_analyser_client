@@ -65,7 +65,7 @@ export default class QuestionPaperDetails extends Component {
     } = this.state
     return (
       <div className="page-container">
-        <div className="container mt-5">
+        <div className="container mt-5 mb-4">
           <Button className="bg-dblue mb-4" href="/examination/overview">
             <AiFillFileAdd /> Back To Overview
           </Button>
