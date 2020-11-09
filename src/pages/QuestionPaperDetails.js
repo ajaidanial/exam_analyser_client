@@ -52,6 +52,13 @@ export default class QuestionPaperDetails extends Component {
           >
             Get Marks Upload File
           </Button>
+          <Button
+            className="mb-4 ml-3"
+            variant="secondary"
+            href="/questions/create"
+          >
+            Add More Questions
+          </Button>
           <Card className="shadow-lg p-3 mb-5 bg-white rounded">
             <Card.Header>
               {questionPaperData.name}
