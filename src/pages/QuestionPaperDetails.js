@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Card, Table } from 'react-bootstrap'
+import { Button, Card, Table, Form } from 'react-bootstrap'
 import { AiFillFileAdd } from 'react-icons/ai'
 import { triggerSimpleAjax } from '../helpers/httpHelper'
 
@@ -8,7 +8,8 @@ export default class QuestionPaperDetails extends Component {
     questionPaperData: {},
     questionsData: [],
     usersReport: [],
-    isLoading: true
+    isLoading: true,
+    errors: {}
   }
 
   componentDidMount() {
@@ -45,6 +46,32 @@ export default class QuestionPaperDetails extends Component {
     })
   }
 
+  handleFileChange = (e) => {
+    const file = e.target.files[0]
+    let formData = new FormData()
+    formData.append('file', file)
+    alert(`Please Wait, uploading and handling file ${file.name}`)
+    triggerSimpleAjax(
+      `examination/marks-upload/?question_paper_id=${localStorage.getItem(
+        'questionpaper_id'
+      )}`,
+      'post',
+      formData,
+      {},
+      { 'Content-Type': 'multipart/form-data' }
+    )
+      .then((response) => {
+        alert('Successfully updated the marks.')
+        window.location.reload()
+      })
+      .catch((errors) => {
+        this.setState({
+          ...this.state,
+          errors: errors
+        })
+      })
+  }
+
   getUploadHelpFile = () => {
     triggerSimpleAjax(
       `examination/marks-upload/?question_paper_id=${localStorage.getItem(
@@ -61,7 +88,8 @@ export default class QuestionPaperDetails extends Component {
       questionPaperData,
       questionsData,
       isLoading,
-      usersReport
+      usersReport,
+      errors
     } = this.state
     return (
       <div className="page-container">
@@ -109,32 +137,47 @@ export default class QuestionPaperDetails extends Component {
           </Card>
 
           {isLoading || (
-            <Table
-              className="bg-white shadow"
-              striped
-              bordered
-              hover
-              responsive
-            >
-              <thead>
-                <tr>
-                  <th>User Name</th>
-                  {questionsData.map((data, index) => (
-                    <th>Q.NO {index + 1}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {usersReport.map((data, index) => (
+            <>
+              <Card className="mb-3 p-3">
+                <Form.Group>
+                  <Form.File
+                    className="position-relative"
+                    required
+                    name="file"
+                    label="Upload & Update Marks"
+                    onChange={this.handleFileChange}
+                    isInvalid={!!errors.file}
+                    feedback={errors.file}
+                  />
+                </Form.Group>
+              </Card>
+              <Table
+                className="bg-white shadow"
+                striped
+                bordered
+                hover
+                responsive
+              >
+                <thead>
                   <tr>
-                    <td>{data.name}</td>
-                    {questionsData.map((questionData, index) => (
-                      <td>{data[index]}</td>
+                    <th>User Name</th>
+                    {questionsData.map((data, index) => (
+                      <th>Q.NO {index + 1}</th>
                     ))}
                   </tr>
-                ))}
-              </tbody>
-            </Table>
+                </thead>
+                <tbody>
+                  {usersReport.map((data, index) => (
+                    <tr>
+                      <td>{data.name}</td>
+                      {questionsData.map((questionData, index) => (
+                        <td>{data[index]}</td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </>
           )}
         </div>
       </div>
