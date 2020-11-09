@@ -25,8 +25,13 @@ import {
   QuestionPaperDetails
 } from './pages/index'
 import { Navibar } from './components'
+import { triggerSimpleAjax } from './helpers/httpHelper'
 
 export default class App extends Component {
+  componentDidMount() {
+    triggerSimpleAjax('auth/refresh-auth-token/', 'get')
+  }
+
   render() {
     return (
       <Router>
