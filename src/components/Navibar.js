@@ -2,16 +2,14 @@ import React, { Component } from 'react'
 import { Navbar, Nav } from 'react-bootstrap'
 export default class Navibar extends Component {
   state = {
-    role: null
+    role: localStorage.getItem('role', null)
   }
 
   componentDidMount() {
-    let user_data = localStorage.getItem('user_data', null)
-    if (user_data) {
+    if (localStorage.getItem('role', null))
       this.setState({
-        ...JSON.parse(user_data)
+        role: JSON.parse(localStorage.getItem('role', null))
       })
-    }
   }
 
   render() {

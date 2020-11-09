@@ -26,6 +26,7 @@ export default class Login extends Component {
       .then((response) => {
         localStorage.setItem('auth_key', response.token)
         localStorage.setItem('user_data', JSON.stringify(response.user_data))
+        localStorage.setItem('role', JSON.stringify(response.user_data.role))
         alert('Successfully signed in user.')
         window.location.reload()
       })

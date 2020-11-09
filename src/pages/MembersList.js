@@ -9,12 +9,20 @@ export default class MembersList extends Component {
   }
 
   componentDidMount() {
-    triggerSimpleAjax('auth/users/', 'get').then((response) => {
-      this.setState({
-        ...this.state,
-        members: response
-      })
-    })
+    let currentRole = null
+    if (localStorage.getItem('role', null)) {
+      currentRole = JSON.parse(localStorage.getItem('role', null))
+    }
+
+    let roleToShow = currentRole === 'teacher' ? 'student' : 'teacher'
+    triggerSimpleAjax(`auth/users/?role=${roleToShow}`, 'get').then(
+      (response) => {
+        this.setState({
+          ...this.state,
+          members: response
+        })
+      }
+    )
   }
 
   render() {
