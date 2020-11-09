@@ -8,21 +8,24 @@ export default class SubjectsCreate extends Component {
     errors: {},
     inputData: {},
     options: {
-      subjects: [],
-      roles: [
-        {
-          value: 'teacher',
-          label: 'Teacher'
-        },
-        {
-          value: 'student',
-          label: 'Student'
-        }
-      ]
+      subjects: []
     }
   }
 
   componentDidMount() {
+    let currentRole = localStorage.getItem('role', null)
+    if (currentRole) {
+      currentRole = JSON.parse(currentRole)
+      this.setState({
+        ...this.state,
+        currentRole: currentRole,
+        inputData: {
+          ...this.state.inputData,
+          role: currentRole === 'admin' ? 'teacher' : 'student'
+        }
+      })
+    }
+
     triggerSimpleAjax('examination/subjects/', 'get').then((response) => {
       let subjectsOptions = []
       response.map((data, index) => {
@@ -77,7 +80,11 @@ export default class SubjectsCreate extends Component {
   }
 
   submitHandler = () => {
-    triggerSimpleAjax('auth/users/', 'post', this.state.inputData)
+    let { inputData } = this.state
+    triggerSimpleAjax('auth/users/', 'post', {
+      ...inputData,
+      username: inputData.email || ''
+    })
       .then((response) => {
         alert('Successfully created member.')
         window.location.href = '/members'
@@ -91,25 +98,19 @@ export default class SubjectsCreate extends Component {
   }
 
   render() {
-    let { inputData, errors, options } = this.state
+    let { inputData, errors, options, currentRole } = this.state
 
     return (
       <div className="page-container">
         <div className="home-container container mt-5 ">
           <Card className="shadow-lg p-3 mb-5 bg-white rounded">
             <Card.Body>
-              <h4>Enter Details To Create A Member</h4>
+              {currentRole === 'admin' ? (
+                <h4>Enter Details To Create A Teacher</h4>
+              ) : (
+                <h4>Enter Details To Create A Student</h4>
+              )}
 
-              <Input
-                type="text"
-                name="username"
-                placeholder="Username"
-                value={inputData.username}
-                change={(e) => this.handleChange(e)}
-                errors={
-                  errors.username || errors.non_field_errors || errors.detail
-                }
-              />
               <Input
                 type="text"
                 name="first_name"
@@ -132,15 +133,12 @@ export default class SubjectsCreate extends Component {
                 placeholder="Email"
                 value={inputData.email}
                 change={(e) => this.handleChange(e)}
-                errors={errors.email}
-              />
-              <AppSelect
-                name="role"
-                value={inputData.role}
-                change={(e) => this.handleChange(e, 'role')}
-                errors={errors.role}
-                options={options.roles}
-                multiple={false}
+                errors={
+                  errors.email ||
+                  errors.username ||
+                  errors.non_field_errors ||
+                  errors.detail
+                }
               />
               <AppSelect
                 name="linked_subjects"
