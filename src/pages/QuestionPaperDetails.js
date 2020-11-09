@@ -26,6 +26,17 @@ export default class QuestionPaperDetails extends Component {
     })
   }
 
+  getUploadHelpFile = () => {
+    triggerSimpleAjax(
+      `examination/marks-upload/?question_paper_id=${localStorage.getItem(
+        'questionpaper_id'
+      )}`,
+      'get'
+    ).then((response) => {
+      window.open(response.url, '_blank')
+    })
+  }
+
   render() {
     let { questionPaperData, questionsData, isLoading } = this.state
     return (
@@ -33,6 +44,13 @@ export default class QuestionPaperDetails extends Component {
         <div className="container mt-5">
           <Button className="bg-dblue mb-4" href="/examination/overview">
             <AiFillFileAdd /> Back To Overview
+          </Button>
+          <Button
+            className="mb-4 ml-3"
+            variant="warning"
+            onClick={this.getUploadHelpFile}
+          >
+            Get Marks Upload File
           </Button>
           <Card className="shadow-lg p-3 mb-5 bg-white rounded">
             <Card.Header>
