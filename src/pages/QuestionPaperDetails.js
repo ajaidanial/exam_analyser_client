@@ -111,7 +111,7 @@ export default class QuestionPaperDetails extends Component {
           >
             Add More Questions
           </Button>
-          <Card className="shadow-lg p-3 mb-5 bg-white rounded">
+          <Card className="shadow-lg p-3 mb-4 bg-white rounded">
             <Card.Header>
               {questionPaperData.name}
               <Card.Text>{questionPaperData.description}</Card.Text>
