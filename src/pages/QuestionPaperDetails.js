@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
-import { Button } from 'react-bootstrap'
+import { Button, Card } from 'react-bootstrap'
 import { AiFillFileAdd } from 'react-icons/ai'
-import { Questioncard } from '../components/index'
 import { triggerSimpleAjax } from '../helpers/httpHelper'
 
 export default class QuestionPaperDetails extends Component {
   state = {
-    questions: {}
+    questionPaperData: {},
+    questionsData: [],
+    isLoading: true
   }
 
   componentDidMount() {
@@ -18,24 +19,41 @@ export default class QuestionPaperDetails extends Component {
     ).then((response) => {
       this.setState({
         ...this.state,
-        questions: response
+        questionPaperData: response,
+        questionsData: response.related_questions,
+        isLoading: false
       })
-      alert('sucess')
-      console.log(this.state.questions.related_questions)
     })
   }
 
   render() {
+    let { questionPaperData, questionsData, isLoading } = this.state
     return (
       <div className="page-container">
         <div className="container mt-5">
-          <Button className="bg-dblue mb-4" href="/questions/create">
-            <AiFillFileAdd /> Add New
+          <Button className="bg-dblue mb-4" href="/examination/overview">
+            <AiFillFileAdd /> Back To Overview
           </Button>
-          <Questioncard
-            {...this.state.questions}
-            related_questions={[this.state.questions.related_questions]}
-          />
+          <Card className="shadow-lg p-3 mb-5 bg-white rounded">
+            <Card.Header>
+              {questionPaperData.name}
+              <Card.Text>{questionPaperData.description}</Card.Text>
+            </Card.Header>
+            <Card.Body>
+              {isLoading || <h6 className="text-warning">Questions:</h6>}
+              {questionsData.map((data, index) => (
+                <div className="border p-2 my-2">
+                  <Card.Text>
+                    Q.NO: {index + 1} | Max Marks: {data.max_marks}
+                  </Card.Text>
+                  <Card.Text className="text-primary">{data.name}</Card.Text>
+                  <Card.Text className="text-muted">
+                    {data.description}
+                  </Card.Text>
+                </div>
+              ))}
+            </Card.Body>
+          </Card>
         </div>
       </div>
     )
