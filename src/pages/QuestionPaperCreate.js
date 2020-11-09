@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Input, AppSelect } from '../components/index'
+import { Input } from '../components/index'
 import { Card, Button } from 'react-bootstrap'
 import { triggerSimpleAjax } from '../helpers/httpHelper'
 
@@ -67,7 +67,7 @@ export default class SubjectsCreate extends Component {
   }
 
   render() {
-    let { inputData, errors, options } = this.state
+    let { inputData, errors } = this.state
 
     return (
       <div className="page-container">

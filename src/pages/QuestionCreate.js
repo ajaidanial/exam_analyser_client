@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Questioncard } from '../components/index'
 import { Input, AppSelect } from '../components/index'
 import { triggerSimpleAjax } from '../helpers/httpHelper'
 import { Button } from 'react-bootstrap'

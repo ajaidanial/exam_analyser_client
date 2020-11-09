@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Table, Button } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
 import { AiFillFileAdd } from 'react-icons/ai'
 import { Questioncard } from '../components/index'
 import { triggerSimpleAjax } from '../helpers/httpHelper'

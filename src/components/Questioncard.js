@@ -12,13 +12,13 @@ export default function Questioncard(props) {
         <Card.Text>{exam}</Card.Text>
         <Card.Text>{subject}</Card.Text>
 
-        {props.related_questions.map((related_question) => (
+        {/* {props.related_questions.map((related_question) => (
           <div>
             <Card.Text>{related_question.name}</Card.Text>
             <Card.Text>{related_question.description}</Card.Text>
             <Card.Text>{related_question.max_marks}</Card.Text>
           </div>
-        ))}
+        ))} */}
         <Button variant="primary">Edit</Button>
       </Card.Body>
     </Card>
