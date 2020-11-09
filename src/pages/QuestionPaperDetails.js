@@ -7,6 +7,7 @@ export default class QuestionPaperDetails extends Component {
   state = {
     questionPaperData: {},
     questionsData: [],
+    usersReport: [],
     isLoading: true
   }
 
@@ -21,12 +22,26 @@ export default class QuestionPaperDetails extends Component {
       )}/?show-questions=true`,
       'get'
     ).then((response) => {
-      this.setState({
-        ...this.state,
-        questionPaperData: response,
-        questionsData: response.related_questions,
-        isLoading: false
-      })
+      this.setState(
+        {
+          ...this.state,
+          questionPaperData: response,
+          questionsData: response.related_questions,
+          isLoading: false
+        },
+        () => {
+          triggerSimpleAjax(
+            `examination/question-papers/${localStorage.getItem(
+              'questionpaper_id'
+            )}/?show-user-report=true`
+          ).then((response) => {
+            this.setState({
+              ...this.state,
+              usersReport: response.users_report || []
+            })
+          })
+        }
+      )
     })
   }
 

@@ -58,7 +58,7 @@ export default class SubjectsCreate extends Component {
 
   submitHandler = () => {
     triggerSimpleAjax(
-      'examination/question-papers/?show-questions=true',
+      'examination/question-papers/',
       'post',
       this.state.inputData
     )
