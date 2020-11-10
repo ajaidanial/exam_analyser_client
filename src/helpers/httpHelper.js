@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const BASEURL = 'https://testing.ajaidanial.wtf/'
+export const BASEURL = 'https://app.madhumithaa.xyz/'
 
 export function triggerSimpleAjax(
   endpoint,
