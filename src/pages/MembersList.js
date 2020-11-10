@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Table, Button } from 'react-bootstrap'
 import { IoIosPersonAdd } from 'react-icons/io'
-import { triggerSimpleAjax } from '../helpers/httpHelper'
+import { triggerSimpleAjax, BASEURL } from '../helpers/httpHelper'
 
 export default class MembersList extends Component {
   state = {
@@ -46,6 +46,7 @@ export default class MembersList extends Component {
                 <th>Last Name</th>
                 <th>Username</th>
                 <th>Role</th>
+                {localStorage.getItem('role') === 'teacher' && <th></th>}
               </tr>
             </thead>
             <tbody>
@@ -57,6 +58,20 @@ export default class MembersList extends Component {
                   <td>{member.last_name}</td>
                   <td>{member.username}</td>
                   <td>{member.role}</td>
+                  {localStorage.getItem('role') === 'teacher' && (
+                    <td>
+                      <a
+                        onClick={(e) => {
+                          window.open(
+                            `${BASEURL}examination/${member.id}/report-card/`,
+                            '_blank'
+                          )
+                        }}
+                      >
+                        View Report Card
+                      </a>
+                    </td>
+                  )}
                 </tr>
               ))}
             </tbody>

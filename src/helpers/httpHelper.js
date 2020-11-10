@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+export const BASEURL = 'https://testing.ajaidanial.wtf/'
+
 export function triggerSimpleAjax(
   endpoint,
   method = 'get',
@@ -18,7 +20,7 @@ export function triggerSimpleAjax(
     axios({
       method: method,
       url: endpoint,
-      baseURL: 'https://testing.ajaidanial.wtf/',
+      baseURL: BASEURL,
       headers: headers,
       params: params,
       data: data,
