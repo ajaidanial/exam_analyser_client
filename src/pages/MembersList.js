@@ -46,7 +46,9 @@ export default class MembersList extends Component {
                 <th>Last Name</th>
                 <th>Username</th>
                 <th>Role</th>
-                {localStorage.getItem('role') === 'teacher' && <th></th>}
+                {JSON.parse(localStorage.getItem('role')) === 'teacher' && (
+                  <th>Report Cards</th>
+                )}
               </tr>
             </thead>
             <tbody>
@@ -58,8 +60,8 @@ export default class MembersList extends Component {
                   <td>{member.last_name}</td>
                   <td>{member.username}</td>
                   <td>{member.role}</td>
-                  {localStorage.getItem('role') === 'teacher' && (
-                    <td>
+                  {JSON.parse(localStorage.getItem('role')) === 'teacher' && (
+                    <td className="text-success">
                       <a
                         onClick={(e) => {
                           window.open(
